@@ -8,7 +8,7 @@ const TUNE = {
   EDGE_BUFFER: 50,
   BRIDGE_SPACING: 220, // distance between pairs of bridges
   WARM_UP_SECONDS: 1 // gap between two bridges
-}
+};
 
 export default class Level {
   constructor(dimensions) {
@@ -44,9 +44,27 @@ export default class Level {
     };
     return bridge;
   }
+  
+  animate(ctx) {
+    this.drawBackground(ctx);
+    this.moveBridges();
+    this.drawBridges(ctx);
+  }
+  
+  drawBackground(ctx) {
+    ctx.fillStyle = "skyblue";
+    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+  }
 
-  eachBridge(callback) {
-    this.bridges.forEach(callback.bind(this));
+  passedBridge(plane, callback) {
+    this.eachBridge((bridge) => {
+      if (bridge.topBridge.right < plane.left) {
+        if (!bridge.passed) {
+          bridge.passed = true;
+          callback();
+        }
+      }
+    });
   }
 
   moveBridges() {
@@ -63,28 +81,34 @@ export default class Level {
       this.bridges.push(this.randomBridge(newX));
     }
   }
-
+  
+  eachBridge(callback) {
+    this.bridges.forEach(callback.bind(this));
+  }
+  
+  
   drawBridges(ctx) {
-    this.eachBridge(function (bridge) {
+    this.eachBridge(bridge => {
       ctx.fillStyle = "green";
-
+      
       //draw top bridge
       ctx.fillRect(
         bridge.topBridge.left,
         bridge.topBridge.top,
         TUNE.BRIDGE_WIDTH,
         bridge.topBridge.bottom - bridge.topBridge.top
-      );
-      //draw bottom bridge
-      ctx.fillRect(
+        );
+        //draw bottom bridge
+        ctx.fillRect(
         bridge.bottomBridge.left,
         bridge.bottomBridge.top,
         TUNE.BRIDGE_WIDTH,
         bridge.bottomBridge.bottom - bridge.bottomBridge.top
-      );
-    });
-  }
-
+        );
+      });
+    }
+    
+  
   collidesWith(plane) {
     //this function returns true if the the rectangles overlap
     const _overlap = (rect1, rect2) => {
@@ -109,12 +133,5 @@ export default class Level {
     return collision;
   }
 
-  animate(ctx) {
-    this.drawBackground(ctx);
-  }
 
-  drawBackground(ctx) {
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-  }
 }

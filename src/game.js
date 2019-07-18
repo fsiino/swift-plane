@@ -20,8 +20,8 @@ export default class PaperPlane {
   // Will call animate.
   restart() {
     this.running = false;
-    this.level = new Level(this.dimensions); // pass in canvas dimensions.
     this.plane = new Plane(this.dimensions);
+    this.level = new Level(this.dimensions); // pass in canvas dimensions.
     this.animate();
   }
 
@@ -32,6 +32,7 @@ export default class PaperPlane {
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
+    
   }
 
   gameOver() {
