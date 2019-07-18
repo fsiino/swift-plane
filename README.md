@@ -20,6 +20,7 @@
 * Web Audio API
 * Webpack 
 
+## Wireframe
 ![Wireframe](https://github.com/fsiino/ascending-paper-plane/blob/master/wireframe_mock.png?raw=true)
 
 ## Implementation Timeline
