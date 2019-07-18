@@ -11,6 +11,11 @@ export default class PaperPlane {
     this.restart(); 
   }
 
+  play() {
+    this.running = true;
+    this.animate();
+  }
+
   // Will create a new instance of Level and store that as an instance variable.
   // Will call animate.
   restart() {
@@ -28,6 +33,13 @@ export default class PaperPlane {
       requestAnimationFrame(this.animate.bind(this));
     }
   }
+
+  gameOver() {
+    return (
+      this.level.collidesWith(this.plane.bounds()) || this.plane.outOfBounds(this.height)
+    );
+  }
+
 
   play () {
     this.running = true;

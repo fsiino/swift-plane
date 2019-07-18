@@ -1,6 +1,6 @@
 const TUNE = {
-  PLANE_WIDTH: 50,
-  PLANE_HEIGHT: 50,
+  PLANE_WIDTH: 40,
+  PLANE_HEIGHT: 30,
   GRAVITY: 0.5,
   FLT_SPEED: 0.8,
   TERMINAL_VEL: 12
@@ -26,7 +26,7 @@ export default class Plane {
   }
 
   fly() {
-    this.velocity = -1 * TUNE.FLT_SPEED;
+    this.velocity = (-1 * TUNE.FLT_SPEED);
   }
 
   movePlane () {
@@ -34,7 +34,6 @@ export default class Plane {
     this.velocity += TUNE.GRAVITY;
 
     if (Math.abs(this.velocity) > TUNE.TERMINAL_VEL) {
-      //if the terminal velocity is exceeded, we set it to the terminal velicty
       if (this.velocity > 0) {
         this.velocity = TUNE.TERMINAL_VEL;
       } else {
