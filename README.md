@@ -20,6 +20,8 @@
 * Web Audio API
 * Webpack 
 
+![Wireframe](https://github.com/fsiino/ascending-paper-plane/blob/master/wireframe_mock.png?raw=true)
+
 ## Implementation Timeline
 ### Day 1: 
 - [ ] Read up and familiarize myself with documentation on Web Audio API, Canvas.js.
