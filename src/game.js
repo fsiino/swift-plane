@@ -61,11 +61,11 @@ export default class PaperPlane {
       switch(e.keyCode) {
         case 65:
           this.moveLeft();
-          console.log("left was pressed");
+          // console.log("left was pressed");
           break;
         case 68:
           this.moveRight();
-          console.log("right was pressed");
+          // console.log("right was pressed");
           break;
       }
     }, false);
@@ -93,13 +93,13 @@ export default class PaperPlane {
   //   }
 
   drawScore() {
-    const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
-    this.ctx.font = "bold 50pt times new roman";
+    const loc = { x: 5, y: 50 };
+    this.ctx.font = "bold 50pt arial";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(this.score, loc.x, loc.y);
-    this.ctx.strokeStyle = "black";
+    // this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 2;
-    this.ctx.strokeText(this.score, loc.x, loc.y);
+    // this.ctx.strokeText(this.score, loc.x, loc.y);
   }
 
 }

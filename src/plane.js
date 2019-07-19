@@ -1,6 +1,6 @@
-const CONSTANTS = {
+const TUNE = {
   GRAVITY: 0.4,
-  FLAP_SPEED: 8,
+  FLT_SPEED: 8,
   TERMINAL_VEL: 12,
   PLANE_WIDTH: 40,
   PLANE_HEIGHT: 30
@@ -19,26 +19,26 @@ export default class Plane {
   //   //if this were a more realistic bird simulation, we would be adding to the velocity
   //   //instead of just assigning it outright
   //   //to make the experience more fun and 'bouncy' we just set it directly
-  //   this.vel = -1 * CONSTANTS.FLAP_SPEED;
+  //   this.vel = -1 * TUNE.FLT_SPEED;
   // }
 
   flyLeft() {
-    this.vel = -1 * CONSTANTS.FLAP_SPEED;
+    this.vel = -1 * TUNE.FLT_SPEED;
   }
 
   flyRight() {
-    this.vel = -1 * CONSTANTS.FLAP_SPEED;
+    this.vel = -1 * TUNE.FLT_SPEED;
   }
 
   movePlane() {
     this.x += this.vel;
     this.y += this.vel;
-    this.vel += CONSTANTS.GRAVITY;
-    if (Math.abs(this.vel) > CONSTANTS.TERMINAL_VEL) {
+    this.vel += TUNE.GRAVITY;
+    if (Math.abs(this.vel) > TUNE.TERMINAL_VEL) {
       if (this.vel > 0) {
-        this.vel = CONSTANTS.TERMINAL_VEL;
+        this.vel = TUNE.TERMINAL_VEL;
       } else {
-        this.vel = CONSTANTS.TERMINAL_VEL * -1;
+        this.vel = TUNE.TERMINAL_VEL * -1;
       }
     }
   }
@@ -51,26 +51,26 @@ export default class Plane {
 
   // drawPlane(ctx) {
   //   ctx.fillStyle = "blue";
-  //   ctx.fillRect(this.x, this.y, CONSTANTS.PLANE_WIDTH, CONSTANTS.PLANE_HEIGHT);
+  //   ctx.fillRect(this.x, this.y, TUNE.PLANE_WIDTH, TUNE.PLANE_HEIGHT);
   // }
 
   drawImg(ctx) {
     let img = document.getElementById("hidden-plane");
-    ctx.drawImage(img, this.x, this.y, CONSTANTS.PLANE_WIDTH, CONSTANTS.PLANE_HEIGHT);
+    ctx.drawImage(img, this.x, this.y, TUNE.PLANE_WIDTH, TUNE.PLANE_HEIGHT);
   }
 
   bounds() {
     return {
       left: this.x,
-      right: this.x + CONSTANTS.PLANE_WIDTH,
+      right: this.x + TUNE.PLANE_WIDTH,
       top: this.y,
-      bottom: this.y + CONSTANTS.PLANE_HEIGHT
+      bottom: this.y + TUNE.PLANE_HEIGHT
     };
   }
 
   outOfBounds() {
     const aboveTheTop = this.y < 0;
-    const belowTheBottom = this.y + CONSTANTS.PLANE_HEIGHT > this.dimensions.height;
+    const belowTheBottom = this.y + TUNE.PLANE_HEIGHT > this.dimensions.height;
     return aboveTheTop || belowTheBottom;
   }
 }
