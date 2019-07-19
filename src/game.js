@@ -46,7 +46,6 @@ export default class PaperPlane {
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
-
   }
 
   gameOver() {
@@ -56,19 +55,46 @@ export default class PaperPlane {
   }
 
   listenForEvents() {
-    this.ctx.canvas.addEventListener("mousedown", this.click.bind(this)); // Bind is used to keep track of the ctx.
+    // this.ctx.canvas.addEventListener("mousedown", this.click.bind(this)); // Bind is used to keep track of the ctx.
+
+    window.addEventListener("keydown", (e) => { 
+      switch(e.keyCode) {
+        case 65:
+          this.moveLeft();
+          console.log("left was pressed");
+          break;
+        case 68:
+          this.moveRight();
+          console.log("right was pressed");
+          break;
+      }
+    }, false);
   }
 
-  click(e) {
+  moveLeft() {
     if (!this.running) {
       this.play();
     }
-      this.plane.fly();
+      this.plane.flyLeft();
     }
+
+  moveRight() {
+    if (!this.running) {
+      this.play();
+    }
+      this.plane.flyRight();
+    }
+
+  // click(e) {
+  //   if (!this.running) {
+  //     this.play();
+  //   }
+  //     this.plane.fly();
+  //   }
 
   drawScore() {
     const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
-    this.ctx.font = "bold 50pt serif";
+    this.ctx.font = "bold 50pt times new roman";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(this.score, loc.x, loc.y);
     this.ctx.strokeStyle = "black";

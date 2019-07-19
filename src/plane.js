@@ -15,24 +15,26 @@ export default class Plane {
     this.vel = 0;
   }
 
-  fly() {
-    //if this were a more realistic bird simulation, we would be adding to the velocity
-    //instead of just assigning it outright
-    //to make the experience more fun and 'bouncy' we just set it directly
+  // fly() {
+  //   //if this were a more realistic bird simulation, we would be adding to the velocity
+  //   //instead of just assigning it outright
+  //   //to make the experience more fun and 'bouncy' we just set it directly
+  //   this.vel = -1 * CONSTANTS.FLAP_SPEED;
+  // }
+
+  flyLeft() {
+    this.vel = -1 * CONSTANTS.FLAP_SPEED;
+  }
+
+  flyRight() {
     this.vel = -1 * CONSTANTS.FLAP_SPEED;
   }
 
   movePlane() {
-    //for each frame, the bird should move by it's current velocity
-    //velocity is 'pixels per frame', so each frame it should update position by vel
+    this.x += this.vel;
     this.y += this.vel;
-    //the acceleration of gravity is in pixels per second per second
-    //so each second, it changes the velocity by whatever the gravity constant is
     this.vel += CONSTANTS.GRAVITY;
-    //we set a 'terminal velocity', a maximum speed the bird can travel
-    //this keeps the game from becoming too wild because the bird is moving too fast to control
     if (Math.abs(this.vel) > CONSTANTS.TERMINAL_VEL) {
-      //if the terminal velocity is exceeded, we set it to the terminal velicty
       if (this.vel > 0) {
         this.vel = CONSTANTS.TERMINAL_VEL;
       } else {
@@ -43,12 +45,18 @@ export default class Plane {
 
   animate(ctx) {
     this.movePlane();
-    this.drawPlane(ctx);
+    // this.drawPlane(ctx);
+    this.drawImg(ctx);
   }
 
-  drawPlane(ctx) {
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(this.x, this.y, CONSTANTS.PLANE_WIDTH, CONSTANTS.PLANE_HEIGHT);
+  // drawPlane(ctx) {
+  //   ctx.fillStyle = "blue";
+  //   ctx.fillRect(this.x, this.y, CONSTANTS.PLANE_WIDTH, CONSTANTS.PLANE_HEIGHT);
+  // }
+
+  drawImg(ctx) {
+    let img = document.getElementById("hidden-plane");
+    ctx.drawImage(img, this.x, this.y, CONSTANTS.PLANE_WIDTH, CONSTANTS.PLANE_HEIGHT);
   }
 
   bounds() {

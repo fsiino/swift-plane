@@ -44,16 +44,43 @@ export default class Level {
     };
     return bridge;
   }
+
+  // randomBridge(b) {
+  //   const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
+  //   const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
+  //   const bridge = {
+  //     topBridge: {
+  //       left: b,
+  //       right: TUNE.BRIDGE_WIDTH + b,
+  //       top: 0,
+  //       bottom: gapTop
+  //     },
+  //     bottomBridge: {
+  //       left: b,
+  //       right: TUNE.BRIDGE_WIDTH + b,
+  //       top: gapTop + TUNE.GAP_HEIGHT,
+  //       bottom: this.dimensions.height
+  //     },
+  //     passed: false
+  //   };
+  //   return bridge;
+  // }
   
   animate(ctx) {
-    this.drawBackground(ctx);
+    // this.drawBackground(ctx);
+    this.drawBgImage(ctx);
     this.moveBridges();
     this.drawBridges(ctx);
   }
   
-  drawBackground(ctx) {
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+  // drawBackground(ctx) {
+  //   ctx.fillStyle = "#a2b9bc";
+  //   ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+  // }
+
+  drawBgImage(ctx) {
+    let img = document.getElementById("hidden-sky");
+    ctx.drawImage(img, 0, 0, this.dimensions.width, this.dimensions.height);
   }
 
   passedBridge(plane, callback) {
@@ -89,7 +116,7 @@ export default class Level {
   
   drawBridges(ctx) {
     this.eachBridge(bridge => {
-      ctx.fillStyle = "green";
+      ctx.fillStyle = "darkred";
       
       //draw top bridge
       ctx.fillRect(
