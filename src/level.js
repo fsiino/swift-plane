@@ -3,7 +3,7 @@
 
 const TUNE = {
   BRIDGE_SPEED: 2,
-  SPACE_HEIGHT: 150,
+  GAP_HEIGHT: 150,
   BRIDGE_WIDTH: 50,
   EDGE_BUFFER: 50,
   BRIDGE_SPACING: 220, // distance between pairs of bridges
@@ -29,7 +29,7 @@ export default class Level {
     const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
     const bridge = {
       topBridge: {
-        left: XMLDocument,
+        left: b,
         right: TUNE.BRIDGE_WIDTH + b,
         top: 0,
         bottom: gapTop

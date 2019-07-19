@@ -20,6 +20,7 @@ export default class PaperPlane {
   // Will call animate.
   restart() {
     this.running = false;
+    this.score = 0;
     this.plane = new Plane(this.dimensions);
     this.level = new Level(this.dimensions); // pass in canvas dimensions.
     this.animate();
@@ -29,22 +30,29 @@ export default class PaperPlane {
   animate () {
     this.level.animate(this.ctx);
     this.plane.animate(this.ctx);
+
+    if (this.gameOver()) {
+      alert(this.score);
+      this.restart();
+    }
+
+    this.level.passedBridge(this.plane.bounds(), () => {
+      this.score += 1;
+      console.log(this.score);
+    });
+
+    this.drawScore();
+
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
-    
+
   }
 
   gameOver() {
     return (
       this.level.collidesWith(this.plane.bounds()) || this.plane.outOfBounds(this.height)
     );
-  }
-
-
-  play () {
-    this.running = true;
-    this.animate();
   }
 
   listenForEvents() {
@@ -54,10 +62,18 @@ export default class PaperPlane {
   click(e) {
     if (!this.running) {
       this.play();
-      this.plane.fly();      
-    } else {
+    }
       this.plane.fly();
     }
+
+  drawScore() {
+    const loc = { x: this.dimensions.width / 2, y: this.dimensions.height / 4 }
+    this.ctx.font = "bold 50pt serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(this.score, loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText(this.score, loc.x, loc.y);
   }
 
 }
