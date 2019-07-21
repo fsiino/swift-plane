@@ -1,14 +1,14 @@
 // Canvas
 
-import Level from './level'; 
+import Level from './level';
 import Plane from './plane';
 
 export default class PaperPlane {
-  constructor(canvas){
+  constructor(canvas) {
     this.ctx = canvas.getContext("2d");
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.listenForEvents();
-    this.restart(); 
+    this.restart();
   }
 
   play() {
@@ -16,8 +16,6 @@ export default class PaperPlane {
     this.animate();
   }
 
-  // Will create a new instance of Level and store that as an instance variable.
-  // Will call animate.
   restart() {
     this.running = false;
     this.score = 0;
@@ -26,13 +24,12 @@ export default class PaperPlane {
     this.animate();
   }
 
-  // Will call animate on Level class.
-  animate () {
+  animate() {
     this.level.animate(this.ctx);
     this.plane.animate(this.ctx);
 
     if (this.gameOver()) {
-      alert(this.score);
+      // alert(this.score);
       this.restart();
     }
 
@@ -57,8 +54,8 @@ export default class PaperPlane {
   listenForEvents() {
     // this.ctx.canvas.addEventListener("mousedown", this.click.bind(this)); // Bind is used to keep track of the ctx.
 
-    window.addEventListener("keydown", (e) => { 
-      switch(e.keyCode) {
+    window.addEventListener("keydown", (e) => {
+      switch (e.keyCode) {
         case 65:
           this.moveLeft();
           // console.log("left was pressed");
@@ -75,22 +72,15 @@ export default class PaperPlane {
     if (!this.running) {
       this.play();
     }
-      this.plane.flyLeft();
-    }
+    this.plane.flyLeft();
+  }
 
   moveRight() {
     if (!this.running) {
       this.play();
     }
-      this.plane.flyRight();
-    }
-
-  // click(e) {
-  //   if (!this.running) {
-  //     this.play();
-  //   }
-  //     this.plane.fly();
-  //   }
+    this.plane.flyRight();
+  }
 
   drawScore() {
     const loc = { x: 5, y: 50 };

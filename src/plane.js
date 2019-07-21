@@ -15,13 +15,6 @@ export default class Plane {
     this.vel = 0;
   }
 
-  // fly() {
-  //   //if this were a more realistic bird simulation, we would be adding to the velocity
-  //   //instead of just assigning it outright
-  //   //to make the experience more fun and 'bouncy' we just set it directly
-  //   this.vel = -1 * TUNE.FLT_SPEED;
-  // }
-
   flyLeft() {
     this.vel = -1 * TUNE.FLT_SPEED;
   }
@@ -31,7 +24,7 @@ export default class Plane {
   }
 
   movePlane() {
-    this.x += this.vel;
+    // this.x += this.vel;
     this.y += this.vel;
     this.vel += TUNE.GRAVITY;
     if (Math.abs(this.vel) > TUNE.TERMINAL_VEL) {
@@ -45,16 +38,10 @@ export default class Plane {
 
   animate(ctx) {
     this.movePlane();
-    // this.drawPlane(ctx);
-    this.drawImg(ctx);
+    this.drawPlane(ctx);
   }
 
-  // drawPlane(ctx) {
-  //   ctx.fillStyle = "blue";
-  //   ctx.fillRect(this.x, this.y, TUNE.PLANE_WIDTH, TUNE.PLANE_HEIGHT);
-  // }
-
-  drawImg(ctx) {
+  drawPlane(ctx) {
     let img = document.getElementById("hidden-plane");
     ctx.drawImage(img, this.x, this.y, TUNE.PLANE_WIDTH, TUNE.PLANE_HEIGHT);
   }

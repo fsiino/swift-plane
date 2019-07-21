@@ -1,3 +1,9 @@
-#hidden-plane {
+#hidden-plane, #hidden-sky, #hidden-ggb, #hidden-pplane-left, #hidden-pplane-right, #hidden-baybr {
   display: none;
+}
+
+.app-container {
+  align-content: center;
+  border: 1px solid black;
+  width: 100%;
 }

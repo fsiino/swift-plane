@@ -14,7 +14,7 @@ export default class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstBridgeDistance = 
+    const firstBridgeDistance =
       this.dimensions.width + (TUNE.WARM_UP_SECONDS * 60 * TUNE.BRIDGE_SPEED);
 
     this.bridges = [
@@ -65,14 +65,14 @@ export default class Level {
   //   };
   //   return bridge;
   // }
-  
+
   animate(ctx) {
     // this.drawBackground(ctx);
     this.drawBgImage(ctx);
     this.moveBridges();
     this.drawBridges(ctx);
   }
-  
+
   // drawBackground(ctx) {
   //   ctx.fillStyle = "#a2b9bc";
   //   ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
@@ -108,34 +108,34 @@ export default class Level {
       this.bridges.push(this.randomBridge(newX));
     }
   }
-  
+
   eachBridge(callback) {
     this.bridges.forEach(callback.bind(this));
   }
-  
-  
+
+
   drawBridges(ctx) {
     this.eachBridge(bridge => {
       ctx.fillStyle = "darkred";
-      
+
       //draw top bridge
       ctx.fillRect(
         bridge.topBridge.left,
         bridge.topBridge.top,
         TUNE.BRIDGE_WIDTH,
         bridge.topBridge.bottom - bridge.topBridge.top
-        );
-        //draw bottom bridge
-        ctx.fillRect(
+      );
+      //draw bottom bridge
+      ctx.fillRect(
         bridge.bottomBridge.left,
         bridge.bottomBridge.top,
         TUNE.BRIDGE_WIDTH,
         bridge.bottomBridge.bottom - bridge.bottomBridge.top
-        );
-      });
-    }
-    
-  
+      );
+    });
+  }
+
+
   collidesWith(plane) {
     //this function returns true if the the rectangles overlap
     const _overlap = (rect1, rect2) => {
