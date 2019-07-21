@@ -24,7 +24,6 @@ export default class Plane {
   }
 
   movePlane() {
-    // this.x += this.vel;
     this.y += this.vel;
     this.vel += TUNE.GRAVITY;
     if (Math.abs(this.vel) > TUNE.TERMINAL_VEL) {

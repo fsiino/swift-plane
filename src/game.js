@@ -29,7 +29,7 @@ export default class PaperPlane {
     this.plane.animate(this.ctx);
 
     if (this.gameOver()) {
-      // alert(this.score);
+      alert(`You scored ${this.score}`);
       this.restart();
     }
 
@@ -52,7 +52,6 @@ export default class PaperPlane {
   }
 
   listenForEvents() {
-    // this.ctx.canvas.addEventListener("mousedown", this.click.bind(this)); // Bind is used to keep track of the ctx.
 
     window.addEventListener("keydown", (e) => {
       switch (e.keyCode) {
@@ -83,13 +82,13 @@ export default class PaperPlane {
   }
 
   drawScore() {
-    const loc = { x: 5, y: 50 };
-    this.ctx.font = "bold 50pt arial";
+    const loc = { x: 10, y: 32 };
+    this.ctx.font = "bold 18pt 'Press Start 2P'";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(this.score, loc.x, loc.y);
-    // this.ctx.strokeStyle = "black";
-    this.ctx.lineWidth = 2;
-    // this.ctx.strokeText(this.score, loc.x, loc.y);
+    this.ctx.fillText(`SCORE: ${this.score}`, loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeText(`SCORE: ${this.score}`, loc.x, loc.y);
   }
 
 }

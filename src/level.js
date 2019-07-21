@@ -3,7 +3,7 @@
 
 const TUNE = {
   BRIDGE_SPEED: 2,
-  GAP_HEIGHT: 150,
+  GAP_HEIGHT: 170,
   BRIDGE_WIDTH: 50,
   EDGE_BUFFER: 50,
   BRIDGE_SPACING: 220, // distance between pairs of bridges
@@ -45,40 +45,13 @@ export default class Level {
     return bridge;
   }
 
-  // randomBridge(b) {
-  //   const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
-  //   const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
-  //   const bridge = {
-  //     topBridge: {
-  //       left: b,
-  //       right: TUNE.BRIDGE_WIDTH + b,
-  //       top: 0,
-  //       bottom: gapTop
-  //     },
-  //     bottomBridge: {
-  //       left: b,
-  //       right: TUNE.BRIDGE_WIDTH + b,
-  //       top: gapTop + TUNE.GAP_HEIGHT,
-  //       bottom: this.dimensions.height
-  //     },
-  //     passed: false
-  //   };
-  //   return bridge;
-  // }
-
   animate(ctx) {
-    // this.drawBackground(ctx);
-    this.drawBgImage(ctx);
+    this.drawBackground(ctx);
     this.moveBridges();
     this.drawBridges(ctx);
   }
 
-  // drawBackground(ctx) {
-  //   ctx.fillStyle = "#a2b9bc";
-  //   ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-  // }
-
-  drawBgImage(ctx) {
+  drawBackground(ctx) {
     let img = document.getElementById("hidden-sky");
     ctx.drawImage(img, 0, 0, this.dimensions.width, this.dimensions.height);
   }
@@ -117,16 +90,20 @@ export default class Level {
   drawBridges(ctx) {
     this.eachBridge(bridge => {
       ctx.fillStyle = "darkred";
+      let img1 = document.getElementById("hidden-sf-tower");
+      let img2 = document.getElementById("hidden-ta-pyr");
 
-      //draw top bridge
-      ctx.fillRect(
+      // ctx.fillRect(
+        ctx.drawImage(
+        img1,
         bridge.topBridge.left,
         bridge.topBridge.top,
         TUNE.BRIDGE_WIDTH,
         bridge.topBridge.bottom - bridge.topBridge.top
       );
-      //draw bottom bridge
-      ctx.fillRect(
+      // ctx.fillRect(
+      ctx.drawImage(
+        img2,
         bridge.bottomBridge.left,
         bridge.bottomBridge.top,
         TUNE.BRIDGE_WIDTH,
@@ -137,13 +114,10 @@ export default class Level {
 
 
   collidesWith(plane) {
-    //this function returns true if the the rectangles overlap
     const _overlap = (rect1, rect2) => {
-      //check that they don't overlap in the x axis
       if (rect1.left > rect2.right || rect1.right < rect2.left) {
         return false;
       }
-      //check that they don't overlap in the y axis
       if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
         return false;
       }
@@ -152,7 +126,6 @@ export default class Level {
     let collision = false;
     this.eachBridge((bridge) => {
       if (
-        //check if the plane is overlapping (colliding) with either bridge
         _overlap(bridge.topBridge, plane) ||
         _overlap(bridge.bottomBridge, plane)
       ) { collision = true; }

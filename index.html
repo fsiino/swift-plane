@@ -4,19 +4,44 @@
   <title>Ascending Paper Plane</title>
   <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- <h1>Ascending Paper Plane 🛫</h1> -->
+
   <div class="app-container">
-    <canvas id="plane-game" height="640" width="480"></canvas>
 
-    <img id="hidden-plane" width="300" height="300" src="assets/plane-8bit.png" >
+    <div class="info">
+      Ascending Paper Plane 🛫
+      <br/>
+      <br/>
+      Use the WASD keys to steer your paper airplane through the city, avoiding obstacles and hitting the highest score possible.
+    </div>
+    
+    <div class="game-canvas">
+      <canvas id="plane-game" height="640" width="980"></canvas>
+    </div>
 
-    <img id="hidden-sky" width="300" height="300" src="assets/sf-8bit.jpg" >
+    <div class="contact">
+      <a href="https:/www.github.com/fsiino" target="_blank"><img alt="github" class="icon" src="assets/github-icon.png"></a> &nbsp;
+      <a href="https://www.linkedin.com/in/fsiino" target="_blank"><img alt="linkedin" class="icon" src="assets/linkedin-icon.png"></a> &nbsp;
+      <a href="mailto:" target="_blank"><img alt="email" class="icon" src="assets/email-icon.png"></a>
+    </div>
 
-    <canvas id="myCanvas" width="300" height="300">
 </div>
+
+<!-- images -->
+
+    <img id="hidden-plane" width="300" height="300" src="assets/plane-8bit.png">
+    
+    <img id="hidden-sf-bg" width="300" height="300" src="assets/sf-8bit.jpg">
+    
+    <img id="hidden-sky" width="300" height="300" src="assets/sky-bg.png">
+    
+    <img id="hidden-sf-tower" width="300" height="300" src="assets/sf-tower.png">
+    
+    <img id="hidden-ta-pyr" width="300" height="300" src="assets/ta-pyr.png">
 
 </body>
 

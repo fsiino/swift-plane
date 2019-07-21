@@ -1,9 +1,32 @@
-#hidden-plane, #hidden-sky, #hidden-ggb, #hidden-pplane-left, #hidden-pplane-right, #hidden-baybr {
+#hidden-plane, #hidden-sky, #hidden-sf-bg, #hidden-sf-tower, #hidden-ta-pyr {
   display: none;
 }
 
 .app-container {
-  align-content: center;
+  display: flex;
+  justify-content: space-between;
   border: 1px solid black;
   width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  height: 640px;
+}
+
+.game-canvas{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.info {
+  margin:10px;
+  width: 20%;
+  /* flex-wrap: wrap; */
+}
+
+.icon {
+  height: 30px;
+}
+
+.contact {
+  margin: 10px;
+  width: 20%;
 }
