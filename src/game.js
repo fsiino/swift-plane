@@ -33,7 +33,7 @@ export default class PaperPlane {
       this.restart();
     }
 
-    this.level.passedBridge(this.plane.bounds(), () => {
+    this.level.passedTower(this.plane.bounds(), () => {
       this.score += 1;
       console.log(this.score);
     });

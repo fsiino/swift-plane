@@ -2,112 +2,119 @@
 // Will control the logic for how the obstacles move and how they are generated
 
 const TUNE = {
-  BRIDGE_SPEED: 2,
+  TOWER_SPEED: 2,
   GAP_HEIGHT: 170,
-  BRIDGE_WIDTH: 50,
-  EDGE_BUFFER: 50,
-  BRIDGE_SPACING: 220, // distance between pairs of bridges
-  WARM_UP_SECONDS: 1 // gap between two bridges
+  TOWER_WIDTH: 50,
+  EDGE_BUFFER: 10,
+  TOWER_SPACING: 320, // distance between pairs of towers
+  WARM_UP_SECONDS: 1 // gap between two towers
 };
 
 export default class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstBridgeDistance =
-      this.dimensions.width + (TUNE.WARM_UP_SECONDS * 60 * TUNE.BRIDGE_SPEED);
+    const firstTowerDistance =
+      this.dimensions.width + (TUNE.WARM_UP_SECONDS * 60 * TUNE.TOWER_SPEED);
 
-    this.bridges = [
-      this.randomBridge(firstBridgeDistance),
-      this.randomBridge(firstBridgeDistance + TUNE.BRIDGE_SPACING),
-      this.randomBridge(firstBridgeDistance + (TUNE.BRIDGE_SPACING * 2)),
+    this.towers = [
+      this.randomTower(firstTowerDistance),
+      this.randomTower(firstTowerDistance + TUNE.TOWER_SPACING),
+      this.randomTower(firstTowerDistance + (TUNE.TOWER_SPACING * 2)),
     ];
   }
 
-  randomBridge(b) {
-    const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
+  randomTower(b) {
+    // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
+    const heightRange = this.dimensions.height / 2;
+    // const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
     const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
-    const bridge = {
-      topBridge: {
+    const tower = {
+      // topTower: {
+      //   left: b,
+      //   right: TUNE.TOWER_WIDTH + b,
+      //   top: 0,
+      //   bottom: gapTop
+      // },
+      bottomTower: {
         left: b,
-        right: TUNE.BRIDGE_WIDTH + b,
-        top: 0,
-        bottom: gapTop
-      },
-      bottomBridge: {
-        left: b,
-        right: TUNE.BRIDGE_WIDTH + b,
+        right: TUNE.TOWER_WIDTH + b,
         top: gapTop + TUNE.GAP_HEIGHT,
         bottom: this.dimensions.height
       },
       passed: false
     };
-    return bridge;
+    return tower;
   }
 
   animate(ctx) {
     this.drawBackground(ctx);
-    this.moveBridges();
-    this.drawBridges(ctx);
+    this.moveTowers();
+    this.drawTowers(ctx);
   }
 
   drawBackground(ctx) {
-    let img = document.getElementById("hidden-sky");
+    let img = document.getElementById("hidden-sf-bg");
     ctx.drawImage(img, 0, 0, this.dimensions.width, this.dimensions.height);
   }
 
-  passedBridge(plane, callback) {
-    this.eachBridge((bridge) => {
-      if (bridge.topBridge.right < plane.left) {
-        if (!bridge.passed) {
-          bridge.passed = true;
+  passedTower(plane, callback) {
+    this.eachTower((tower) => {
+      // if (tower.topTower.right < plane.left) {
+      if (tower.bottomTower.right < plane.left) {
+        if (!tower.passed) {
+          tower.passed = true;
           callback();
         }
       }
     });
   }
 
-  moveBridges() {
-    this.eachBridge(bridge => {
-      bridge.topBridge.left -= TUNE.BRIDGE_SPEED;
-      bridge.topBridge.right -= TUNE.BRIDGE_SPEED;
-      bridge.bottomBridge.left -= TUNE.BRIDGE_SPEED;
-      bridge.bottomBridge.right -= TUNE.BRIDGE_SPEED;
+  moveTowers() {
+    this.eachTower(tower => {
+      // tower.topTower.left -= TUNE.TOWER_SPEED;
+      // tower.topTower.right -= TUNE.TOWER_SPEED;
+      tower.bottomTower.left -= TUNE.TOWER_SPEED;
+      tower.bottomTower.right -= TUNE.TOWER_SPEED;
     });
 
-    if (this.bridges[0].topBridge.right <= 0) {
-      this.bridges.shift();
-      const newX = this.bridges[1].topBridge.left + TUNE.BRIDGE_SPACING;
-      this.bridges.push(this.randomBridge(newX));
+    // if (this.towers[0].topTower.right <= 0) {
+    if (this.towers[0].bottomTower.right <= 0) {
+      this.towers.shift();
+      // const newX = this.towers[1].topTower.left + TUNE.TOWER_SPACING + 75;
+      const newX = this.towers[1].bottomTower.left + TUNE.TOWER_SPACING + 75;
+      this.towers.push(this.randomTower(newX));
     }
   }
 
-  eachBridge(callback) {
-    this.bridges.forEach(callback.bind(this));
+  eachTower(callback) {
+    this.towers.forEach(callback.bind(this));
   }
 
 
-  drawBridges(ctx) {
-    this.eachBridge(bridge => {
-      ctx.fillStyle = "darkred";
+  drawTowers(ctx) {
+    this.eachTower(tower => {
+      // ctx.fillStyle = "darkred";
       let img1 = document.getElementById("hidden-sf-tower");
       let img2 = document.getElementById("hidden-ta-pyr");
 
+      let towers = [img1, img2];
+
       // ctx.fillRect(
-        ctx.drawImage(
-        img1,
-        bridge.topBridge.left,
-        bridge.topBridge.top,
-        TUNE.BRIDGE_WIDTH,
-        bridge.topBridge.bottom - bridge.topBridge.top
-      );
+      //   ctx.drawImage(
+      //   img1,
+      //   tower.topTower.left,
+      //   tower.topTower.top,
+      //   TUNE.TOWER_WIDTH,
+      //   tower.topTower.bottom - tower.topTower.top
+      // );
       // ctx.fillRect(
       ctx.drawImage(
         img2,
-        bridge.bottomBridge.left,
-        bridge.bottomBridge.top,
-        TUNE.BRIDGE_WIDTH,
-        bridge.bottomBridge.bottom - bridge.bottomBridge.top
+        tower.bottomTower.left,
+        tower.bottomTower.top,
+        TUNE.TOWER_WIDTH,
+        tower.bottomTower.bottom - tower.bottomTower.top
       );
     });
   }
@@ -124,10 +131,10 @@ export default class Level {
       return true;
     };
     let collision = false;
-    this.eachBridge((bridge) => {
+    this.eachTower((tower) => {
       if (
-        _overlap(bridge.topBridge, plane) ||
-        _overlap(bridge.bottomBridge, plane)
+        // _overlap(tower.topTower, plane) ||
+        _overlap(tower.bottomTower, plane)
       ) { collision = true; }
     });
     return collision;
