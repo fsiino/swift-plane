@@ -25,6 +25,12 @@ export default class Level {
   }
 
   randomTower(b) {
+    let img1 = document.getElementById("hidden-sf-tower");
+    let img2 = document.getElementById("hidden-ta-pyr");
+    let img3 = document.getElementById("hidden-sf-millenium");
+    let img4= document.getElementById("hidden-sf-coit");
+
+    const towers = [img1, img2, img3, img4];
     // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
     const heightRange = this.dimensions.height / 2;
     // const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
@@ -37,6 +43,7 @@ export default class Level {
       //   bottom: gapTop
       // },
       bottomTower: {
+        img: towers[Math.floor(Math.random() * towers.length)],
         left: b,
         right: TUNE.TOWER_WIDTH + b,
         top: gapTop + TUNE.GAP_HEIGHT,
@@ -95,10 +102,10 @@ export default class Level {
   drawTowers(ctx) {
     this.eachTower(tower => {
       // ctx.fillStyle = "darkred";
-      let img1 = document.getElementById("hidden-sf-tower");
-      let img2 = document.getElementById("hidden-ta-pyr");
+      // let img1 = document.getElementById("hidden-sf-tower");
+      // let img2 = document.getElementById("hidden-ta-pyr");
 
-      let towers = [img1, img2];
+      // let towers = [img1, img2];
 
       // ctx.fillRect(
       //   ctx.drawImage(
@@ -110,7 +117,7 @@ export default class Level {
       // );
       // ctx.fillRect(
       ctx.drawImage(
-        img2,
+        tower.bottomTower.img,
         tower.bottomTower.left,
         tower.bottomTower.top,
         TUNE.TOWER_WIDTH,

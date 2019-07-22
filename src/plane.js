@@ -1,3 +1,5 @@
+import './control.js';
+
 const TUNE = {
   GRAVITY: 0.4,
   FLT_SPEED: 8,
@@ -16,10 +18,14 @@ export default class Plane {
   }
 
   flyLeft() {
-    this.vel = -1 * TUNE.FLT_SPEED;
+    this.x -= 20;
   }
 
   flyRight() {
+    this.x += 20;
+  }
+
+  flyUp() {
     this.vel = -1 * TUNE.FLT_SPEED;
   }
 

@@ -1,4 +1,4 @@
-#hidden-plane, #hidden-sky, #hidden-sf-bg, #hidden-sf-tower, #hidden-ta-pyr {
+#hidden-plane, #hidden-sky, #hidden-sf-bg, #hidden-sf-tower, #hidden-ta-pyr, #hidden-sf-millenium, #hidden-sf-coit {
   display: none;
 }
 
@@ -8,18 +8,26 @@
   border: 1px solid black;
   width: 100%;
   font-family: 'Courier New', Courier, monospace;
-  height: 640px;
+  height: 635px;
 }
 
+
 .game-canvas{
+  background-color: black;
   border-left: 1px solid black;
   border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 97%;
+}
+
+.space {
+  padding: 0;
+  display: inline-block;
 }
 
 .info {
   margin:10px;
   width: 20%;
-  /* flex-wrap: wrap; */
 }
 
 .icon {
@@ -27,6 +35,7 @@
 }
 
 .contact {
+  text-align: center;
   margin: 10px;
   width: 20%;
 }

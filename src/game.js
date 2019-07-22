@@ -63,6 +63,10 @@ export default class PaperPlane {
           this.moveRight();
           // console.log("right was pressed");
           break;
+        case 87:
+          this.moveUp();
+          // console.log("right was pressed");
+          break;
       }
     }, false);
   }
@@ -79,6 +83,13 @@ export default class PaperPlane {
       this.play();
     }
     this.plane.flyRight();
+  }
+
+  moveUp() {
+    if (!this.running) {
+      this.play();
+    }
+    this.plane.flyUp();
   }
 
   drawScore() {
