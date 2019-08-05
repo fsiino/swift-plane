@@ -1,10 +1,9 @@
-import './control.js';
 
 const TUNE = {
   GRAVITY: 0.4,
   FLT_SPEED: 8,
   TERMINAL_VEL: 12,
-  PLANE_WIDTH: 40,
+  PLANE_WIDTH: 60,
   PLANE_HEIGHT: 30
 };
 
@@ -15,19 +14,16 @@ export default class Plane {
     this.x = this.dimensions.width / 3;
     this.y = this.dimensions.height / 2;
     this.vel = 0;
+    this.xVel = 0;
+    this.yVel = 0;
+   
+
   }
 
-  flyLeft() {
-    this.x -= 20;
-  }
-
-  flyRight() {
-    this.x += 20;
-  }
-
-  flyUp() {
+  fly() {
     this.vel = -1 * TUNE.FLT_SPEED;
   }
+
 
   movePlane() {
     this.y += this.vel;
@@ -44,6 +40,7 @@ export default class Plane {
   animate(ctx) {
     this.movePlane();
     this.drawPlane(ctx);
+    this.xVel *= 0.9;
   }
 
   drawPlane(ctx) {

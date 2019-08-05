@@ -1,151 +1,137 @@
-// Responsible for drawing the background and obstacles.
-// Will control the logic for how the obstacles move and how they are generated
-
 const TUNE = {
-  TOWER_SPEED: 2,
-  GAP_HEIGHT: 170,
-  TOWER_WIDTH: 50,
-  EDGE_BUFFER: 10,
-  TOWER_SPACING: 320, // distance between pairs of towers
-  WARM_UP_SECONDS: 1 // gap between two towers
+  PIPE_SPEED: 2,
+  GAP_HEIGHT: 200,
+  PIPE_WIDTH: 130,
+  EDGE_BUFFER: 50,
+  PIPE_SPACING: 370,
+  WARM_UP_SECONDS: 1
 };
 
 export default class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstTowerDistance =
-      this.dimensions.width + (TUNE.WARM_UP_SECONDS * 60 * TUNE.TOWER_SPEED);
+    const firstPipeDistance =
+      this.dimensions.width +
+      (TUNE.WARM_UP_SECONDS * 60 * TUNE.PIPE_SPEED);
 
-    this.towers = [
-      this.randomTower(firstTowerDistance),
-      this.randomTower(firstTowerDistance + TUNE.TOWER_SPACING),
-      this.randomTower(firstTowerDistance + (TUNE.TOWER_SPACING * 2)),
+    this.pipes = [
+      this.randomPipe(firstPipeDistance),
+      this.randomPipe(firstPipeDistance + TUNE.PIPE_SPACING),
+      this.randomPipe(firstPipeDistance + (TUNE.PIPE_SPACING * 2)),
     ];
   }
 
-  randomTower(b) {
-    let img1 = document.getElementById("hidden-sf-tower");
-    let img2 = document.getElementById("hidden-ta-pyr");
-    let img3 = document.getElementById("hidden-sf-millenium");
-    let img4= document.getElementById("hidden-sf-coit");
-
-    const towers = [img1, img2, img3, img4];
+  randomPipe(x) {
     // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
-    const heightRange = this.dimensions.height / 2;
-    // const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
+    const heightRange = (this.dimensions.height / 2) 
     const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
-    const tower = {
-      // topTower: {
-      //   left: b,
-      //   right: TUNE.TOWER_WIDTH + b,
-      //   top: 0,
-      //   bottom: gapTop
-      // },
-      bottomTower: {
-        img: towers[Math.floor(Math.random() * towers.length)],
-        left: b,
-        right: TUNE.TOWER_WIDTH + b,
+    const pipe = {
+      topPipe: {
+        left: x,
+        right: TUNE.PIPE_WIDTH + x,
+        top: 0,
+        bottom: gapTop
+      },
+      bottomPipe: {
+        left: x,
+        right: TUNE.PIPE_WIDTH + x,
         top: gapTop + TUNE.GAP_HEIGHT,
         bottom: this.dimensions.height
       },
       passed: false
     };
-    return tower;
+    return pipe
   }
 
   animate(ctx) {
     this.drawBackground(ctx);
-    this.moveTowers();
-    this.drawTowers(ctx);
+    this.movePipes();
+    this.drawPipes(ctx);
   }
 
   drawBackground(ctx) {
-    let img = document.getElementById("hidden-sf-bg");
-    ctx.drawImage(img, 0, 0, this.dimensions.width, this.dimensions.height);
+    ctx.drawImage(document.getElementById("hidden-scroll-bg"), 0, 0, this.dimensions.width, this.dimensions.height)
   }
 
-  passedTower(plane, callback) {
-    this.eachTower((tower) => {
-      // if (tower.topTower.right < plane.left) {
-      if (tower.bottomTower.right < plane.left) {
-        if (!tower.passed) {
-          tower.passed = true;
+  passedPipe(plane, callback) {
+    this.eachPipe((pipe) => {
+      if (pipe.topPipe.right < plane.left) {
+        if (!pipe.passed) {
+          pipe.passed = true;
           callback();
         }
       }
     });
   }
 
-  moveTowers() {
-    this.eachTower(tower => {
-      // tower.topTower.left -= TUNE.TOWER_SPEED;
-      // tower.topTower.right -= TUNE.TOWER_SPEED;
-      tower.bottomTower.left -= TUNE.TOWER_SPEED;
-      tower.bottomTower.right -= TUNE.TOWER_SPEED;
+  movePipes() {
+    this.eachPipe(function (pipe) {
+      pipe.topPipe.left -= TUNE.PIPE_SPEED;
+      pipe.topPipe.right -= TUNE.PIPE_SPEED;
+      pipe.bottomPipe.left -= TUNE.PIPE_SPEED;
+      pipe.bottomPipe.right -= TUNE.PIPE_SPEED;
     });
 
-    // if (this.towers[0].topTower.right <= 0) {
-    if (this.towers[0].bottomTower.right <= 0) {
-      this.towers.shift();
-      // const newX = this.towers[1].topTower.left + TUNE.TOWER_SPACING + 75;
-      const newX = this.towers[1].bottomTower.left + TUNE.TOWER_SPACING + 75;
-      this.towers.push(this.randomTower(newX));
+    //if a pipe has left the screen add a new one to the end
+    if (this.pipes[0].topPipe.right <= 0) {
+      this.pipes.shift();
+      const newX = this.pipes[1].topPipe.left + TUNE.PIPE_SPACING;
+      this.pipes.push(this.randomPipe(newX));
     }
   }
 
-  eachTower(callback) {
-    this.towers.forEach(callback.bind(this));
-  }
+  drawPipes(ctx) {
+    this.eachPipe(function (pipe) {
+      ctx.fillStyle = "green";
 
-
-  drawTowers(ctx) {
-    this.eachTower(tower => {
-      // ctx.fillStyle = "darkred";
-      // let img1 = document.getElementById("hidden-sf-tower");
-      // let img2 = document.getElementById("hidden-ta-pyr");
-
-      // let towers = [img1, img2];
-
+      //draw top pipe
+     // ctx.fillRect(
+        ctx.drawImage(
+        document.getElementById("hidden-top-pipe"),
+        pipe.topPipe.left,
+        pipe.topPipe.top,
+        TUNE.PIPE_WIDTH,
+        pipe.topPipe.bottom - pipe.topPipe.top
+      );
+      //draw bottom pipe
       // ctx.fillRect(
-      //   ctx.drawImage(
-      //   img1,
-      //   tower.topTower.left,
-      //   tower.topTower.top,
-      //   TUNE.TOWER_WIDTH,
-      //   tower.topTower.bottom - tower.topTower.top
-      // );
-      // ctx.fillRect(
-      ctx.drawImage(
-        tower.bottomTower.img,
-        tower.bottomTower.left,
-        tower.bottomTower.top,
-        TUNE.TOWER_WIDTH,
-        tower.bottomTower.bottom - tower.bottomTower.top
+        ctx.drawImage(
+        document.getElementById("hidden-bottom-pipe"),
+        pipe.bottomPipe.left,
+        pipe.bottomPipe.top,
+        TUNE.PIPE_WIDTH,
+        pipe.bottomPipe.bottom - pipe.bottomPipe.top
       );
     });
   }
 
-
+  eachPipe(callback) {
+    this.pipes.forEach(callback.bind(this));
+  }
+  //This method shall return true if the plane passed in is currently
+  //colliding with any pipe.
   collidesWith(plane) {
+    //this function returns true if the the rectangles overlap
     const _overlap = (rect1, rect2) => {
+      //check that they don't overlap in the x axis
       if (rect1.left > rect2.right || rect1.right < rect2.left) {
         return false;
       }
+      //check that they don't overlap in the y axis
       if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
         return false;
       }
       return true;
     };
     let collision = false;
-    this.eachTower((tower) => {
+    this.eachPipe((pipe) => {
       if (
-        // _overlap(tower.topTower, plane) ||
-        _overlap(tower.bottomTower, plane)
+        //check if the plane is overlapping (colliding) with either pipe
+        _overlap(pipe.topPipe, plane) ||
+        _overlap(pipe.bottomPipe, plane)
       ) { collision = true; }
     });
     return collision;
   }
-
-
 }

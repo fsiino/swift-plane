@@ -9,6 +9,28 @@ export default class PaperPlane {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.listenForEvents();
     this.restart();
+
+    let controller = {
+      left: false,
+      right: false,
+      up: false,
+      keyListener: function (event) {
+        let key_state = (event.type == "keydown") ? true : false;
+
+        switch (event.keyCode) {
+          case 37:
+            controller.left = key_state;
+            break;
+          case 39:
+            controller.right = key_state;
+            break;
+          case 32:
+            controller.up = key_state;
+            break;
+        }
+      }
+    };
+
   }
 
   play() {
@@ -33,7 +55,7 @@ export default class PaperPlane {
       this.restart();
     }
 
-    this.level.passedTower(this.plane.bounds(), () => {
+    this.level.passedPipe(this.plane.bounds(), () => {
       this.score += 1;
       console.log(this.score);
     });
@@ -43,6 +65,8 @@ export default class PaperPlane {
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
+
+
   }
 
   gameOver() {
@@ -52,44 +76,35 @@ export default class PaperPlane {
   }
 
   listenForEvents() {
-
     window.addEventListener("keydown", (e) => {
+      let key_state = (event.type == "keydown") ? true : false;
       switch (e.keyCode) {
         case 65:
-          this.moveLeft();
+          this.move();
           // console.log("left was pressed");
           break;
         case 68:
-          this.moveRight();
+          // this.move();
           // console.log("right was pressed");
+          this.plane.xVel += 2;
           break;
         case 87:
-          this.moveUp();
+          this.move();
+          // console.log("right was pressed");
+          break;
+        case 83:
+          this.move();
           // console.log("right was pressed");
           break;
       }
     }, false);
   }
 
-  moveLeft() {
+  move() {
     if (!this.running) {
       this.play();
     }
-    this.plane.flyLeft();
-  }
-
-  moveRight() {
-    if (!this.running) {
-      this.play();
-    }
-    this.plane.flyRight();
-  }
-
-  moveUp() {
-    if (!this.running) {
-      this.play();
-    }
-    this.plane.flyUp();
+    this.plane.fly();
   }
 
   drawScore() {

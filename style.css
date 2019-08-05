@@ -1,4 +1,4 @@
-#hidden-plane, #hidden-sky, #hidden-sf-bg, #hidden-sf-tower, #hidden-ta-pyr, #hidden-sf-millenium, #hidden-sf-coit {
+#hidden-plane, #hidden-bottom-pipe, #hidden-top-pipe, #hidden-scroll-bg {
   display: none;
 }
 
@@ -6,9 +6,9 @@
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
-  width: 100%;
+  /* width: 100%; */
   font-family: 'Courier New', Courier, monospace;
-  height: 635px;
+  /* height: 635px; */
 }
 
 
@@ -17,7 +17,7 @@
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
-  width: 97%;
+  /* width: 97%; */
 }
 
 .space {

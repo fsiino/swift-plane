@@ -1,0 +1,27 @@
+{
+  "name": "ascending-paper-plane",
+  "version": "1.0.0",
+  "description": "[Live Link](http://fsiino.github.io/ascending-paper-plane)",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack": "^4.38.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsiino/ascending-paper-plane.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsiino/ascending-paper-plane/issues"
+  },
+  "homepage": "https://github.com/fsiino/ascending-paper-plane#readme"
+}
