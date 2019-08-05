@@ -9,28 +9,6 @@ export default class PaperPlane {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.listenForEvents();
     this.restart();
-
-    let controller = {
-      left: false,
-      right: false,
-      up: false,
-      keyListener: function (event) {
-        let key_state = (event.type == "keydown") ? true : false;
-
-        switch (event.keyCode) {
-          case 37:
-            controller.left = key_state;
-            break;
-          case 39:
-            controller.right = key_state;
-            break;
-          case 32:
-            controller.up = key_state;
-            break;
-        }
-      }
-    };
-
   }
 
   play() {
@@ -86,7 +64,6 @@ export default class PaperPlane {
         case 68:
           // this.move();
           // console.log("right was pressed");
-          this.plane.xVel += 2;
           break;
         case 87:
           this.move();
