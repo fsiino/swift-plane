@@ -17,11 +17,13 @@ export default class Plane {
     this.xVel = 0;
     this.yVel = 0;
    
-
   }
 
-  fly() {
-    this.vel = -1 * TUNE.FLT_SPEED;
+  fly(key_state) {
+    if (key_state === "up") this.vel = -1 * TUNE.FLT_SPEED;
+    if (key_state === "right") this.xVel += 15;
+    if (key_state === "left") this.xVel -= 15;
+    if (key_state === "down") this.yVel += 10;
   }
 
 
@@ -40,7 +42,11 @@ export default class Plane {
   animate(ctx) {
     this.movePlane();
     this.drawPlane(ctx);
+    
+    this.x += this.xVel;
+    this.y += this.yVel;
     this.xVel *= 0.9;
+    this.yVel *= 0.9;
   }
 
   drawPlane(ctx) {

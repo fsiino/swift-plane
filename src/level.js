@@ -48,6 +48,7 @@ export default class Level {
     this.drawBackground(ctx);
     this.movePipes();
     this.drawPipes(ctx);
+    
   }
 
   drawBackground(ctx) {

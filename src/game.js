@@ -58,30 +58,34 @@ export default class PaperPlane {
       let key_state = (event.type == "keydown") ? true : false;
       switch (e.keyCode) {
         case 65:
-          this.move();
+          key_state = "left";
+          this.move(key_state);
           // console.log("left was pressed");
           break;
         case 68:
-          // this.move();
+          key_state = "right";
+          this.move(key_state);
           // console.log("right was pressed");
           break;
         case 87:
-          this.move();
-          // console.log("right was pressed");
+          key_state = "up";
+          this.move(key_state);
+          // console.log("up was pressed");
           break;
         case 83:
-          this.move();
-          // console.log("right was pressed");
+          key_state = "down";
+          this.move(key_state);
+          // console.log("down was pressed");
           break;
       }
     }, false);
   }
 
-  move() {
+  move(key_state) {
     if (!this.running) {
       this.play();
     }
-    this.plane.fly();
+    this.plane.fly(key_state);
   }
 
   drawScore() {
