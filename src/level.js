@@ -1,5 +1,6 @@
 const TUNE = {
-  PIPE_SPEED: 2,
+  // PIPE_SPEED: 2,
+  PIPE_SPEED: 4,
   GAP_HEIGHT: 200,
   PIPE_WIDTH: 130,
   EDGE_BUFFER: 50,

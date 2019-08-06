@@ -1,7 +1,9 @@
 
 const TUNE = {
-  GRAVITY: 0.4,
-  FLT_SPEED: 8,
+  // GRAVITY: 0.4,
+  GRAVITY: 0.2,
+  // FLT_SPEED: 8,
+  FLT_SPEED: 5,
   TERMINAL_VEL: 12,
   PLANE_WIDTH: 60,
   PLANE_HEIGHT: 30
