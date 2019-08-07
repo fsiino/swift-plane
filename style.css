@@ -24,7 +24,7 @@ body {
   justify-content: center;
   background: rgb(113, 176, 248);
   border: 1px solid black;
-  height: 600px;
+  height: 620px;
   /* width: 100%; */
   /* height: 635px; */
 }
@@ -35,10 +35,15 @@ h1 {
 }
 
 .game-canvas{
-  border-left: 1px solid black;
+  padding: 35px 0 35px; 0;
+  /* border-left: 1px solid black;
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid black; */
   /* width: 97%; */
+}
+
+#plane-game {
+  border: 1px solid black;
 }
 
 .space {
@@ -47,8 +52,9 @@ h1 {
 }
 
 .info {
-  margin:10px;
-  width: 20%;
+  position: absolute;
+  top: 54px;
+  left: 20px;
 }
 
 .icon {
