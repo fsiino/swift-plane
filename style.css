@@ -2,18 +2,39 @@
   display: none;
 }
 
+#start-screen {
+
+}
+
+#instructions-header {
+
+}
+
+#instructions {
+  
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: 'Roboto', sans-serif;
+}
+
 .app-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  background: rgb(113, 176, 248);
   border: 1px solid black;
+  height: 600px;
   /* width: 100%; */
-  font-family: 'Courier New', Courier, monospace;
   /* height: 635px; */
 }
 
+h1 {
+  text-align: center;
+  margin: 2px 0 2px 0;
+}
 
 .game-canvas{
-  background-color: black;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
@@ -34,7 +55,20 @@
   height: 30px;
 }
 
+.site {
+  position: fixed;
+  top: 1px;
+  left: 1px;
+  text-align: center;
+  margin: 10px;
+  width: 20%;
+  
+}
+
 .contact {
+  position: fixed;
+  top: 1px;
+  right: 1px;
   text-align: center;
   margin: 10px;
   width: 20%;

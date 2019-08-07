@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-  <title>Ascending Paper Plane</title>
+  <title>Swift Plane</title>
   <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
   <link rel="stylesheet" href="style.css">
 
@@ -9,28 +9,54 @@
 
   <link rel="shortcut icon" href="assets/favicon.ico">
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-
+<h1>Swift Plane 🛫</h1>
   <div class="app-container">
 
-    <div class="info">
-      <h4>Ascending Paper Plane 🛫</h4>
-      Steer your paper airplane through the peaks, avoiding obstacles and hitting the highest score possible.
+    <!-- <div class="info">
+
       <br/>
       <h4>Controls</h4>
       W: Propel Upward
       <br/>
-      <!-- A: Backpadel
+      A: Backpadel
       <br/>
-      D: Propel Forward -->
-    </div>
+      S: Descend
+      <br/>
+      D: Propel Forward
+    </div> -->
     
     <div class="game-canvas">
         <canvas id="plane-game" height="530" width="800"></canvas>
       <!-- <img width="980px" src="assets/ground.png"/> -->
+    </div>
+
+    <div id="start-screen">
+      <p>
+        Fly your paper airplane through the peaks! Avoid peaks.
+      </p>
+      <p style="color: crimson;margin-top: auto;">
+        Press any key to start.
+      </p>
+      <div id="instructions-header">
+        Instructions:
+      </div>
+      <ul id="instructions">
+        <li><strong>W:</strong> Propel Upward ⇧</li>
+        <li><strong>Hold W:</strong> Fly Up ⇪</li>
+        <li><strong>S:</strong> Descend ⇩</li>
+        <li><strong>A:</strong> Backpadel ⇦</li>
+        <li><strong>D:</strong> Propel Forward ⇨</li>
+      </ul>
+    </div>
+
+    <div class="site">
+      <a href="https://www.frankiesiino.com"><img src="assets/web-icon.png" class="icon">frankiesiino.com</a>
     </div>
 
     <div class="contact">
