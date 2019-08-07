@@ -42,7 +42,7 @@ export default class Level {
       },
       passed: false
     };
-    return pipe
+    return pipe;
   }
 
   animate(ctx) {

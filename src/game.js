@@ -9,6 +9,7 @@ export default class PaperPlane {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.listenForEvents();
     this.restart();
+    this.startScreen();
   }
 
   play() {
@@ -43,7 +44,6 @@ export default class PaperPlane {
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
-
 
   }
 
@@ -80,6 +80,17 @@ export default class PaperPlane {
       }
     }, false);
   }
+
+  startScreen() {
+    this.ctx.font = "bold 40pt 'Press Start 2P'";
+    this.ctx.fillStyle = "#000000";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("swiftPlane!", this.dimensions.width/2, this.dimensions.height/2);
+    // this.ctx.fillRect(0, 0, this.dimensions.width/2, this.dimensions.height/2);
+    this.ctx.font= "20pt 'Arial'";
+    this.ctx.fillText("Press W/A/S/D to Begin", this.dimensions.width/2, this.dimensions.height/2 + 40);
+  }
+
 
   move(key_state) {
     if (!this.running) {

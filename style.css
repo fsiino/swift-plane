@@ -2,7 +2,7 @@
   display: none;
 }
 
-#start-screen {
+/* #start-screen {
 
 }
 
@@ -12,11 +12,24 @@
 
 #instructions {
   
+} */
+
+.test {
+  font-family: 'Press Start 2P';
+  display: none;
 }
 
 body {
   background-color: #f7f7f7;
   font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: rgb(82, 148, 224);
 }
 
 .app-container {
@@ -25,8 +38,6 @@ body {
   background: rgb(113, 176, 248);
   border: 1px solid black;
   height: 620px;
-  /* width: 100%; */
-  /* height: 635px; */
 }
 
 h1 {
@@ -35,15 +46,15 @@ h1 {
 }
 
 .game-canvas{
-  padding: 35px 0 35px; 0;
-  /* border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black; */
-  /* width: 97%; */
+  padding: 35px 0 35px; 
+  
 }
 
 #plane-game {
   border: 1px solid black;
+  /* background-color: #f7f7f7; */
+  background-image: url('assets/bg-scroll.png');
+  background-size: 800px 550px;
 }
 
 .space {
