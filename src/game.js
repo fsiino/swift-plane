@@ -30,9 +30,10 @@ export default class PaperPlane {
     this.plane.animate(this.ctx);
 
     if (this.gameOver()) {
-      alert(`You scored ${this.score}`);
+      // alert(`You scored ${this.score}`);
       this.restart();
-      this.startScreen();
+      this.endScreen();
+      // this.startScreen();
     }
 
     this.level.passedPipe(this.plane.bounds(), () => {
@@ -40,8 +41,6 @@ export default class PaperPlane {
       console.log(this.score);
     });
 
-    // this.drawScore();
-    
     if (this.running) {
       this.drawScore();
       requestAnimationFrame(this.animate.bind(this));
@@ -84,13 +83,22 @@ export default class PaperPlane {
   }
 
   startScreen() {
-    this.ctx.font = "bold 40pt 'Press Start 2P'";
+    this.ctx.font = "bold 40pt 'Arial'";
     this.ctx.fillStyle = "#000000";
     this.ctx.textAlign = "center";
     this.ctx.fillText("swiftPlane!", this.dimensions.width/2, this.dimensions.height/2);
-    // this.ctx.fillRect(0, 0, this.dimensions.width/2, this.dimensions.height/2);
     this.ctx.font= "20pt 'Arial'";
     this.ctx.fillText("Press W/A/S/D to Begin", this.dimensions.width/2, this.dimensions.height/2 + 40);
+  }
+
+  endScreen() {
+    this.ctx.font = "bold 40 pt 'Arial'";
+    this.ctx.fillStyle = "#000000";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Game Over!", this.dimensions.width/2, this.dimensions.height/2 - 40);
+    this.ctx.fillText(`You Scored ${this.score}`, this.dimensions.width/2, this.dimensions.height/2);
+    // this.ctx.font = "20 pt 'Arial'";
+    this.ctx.fillText("Press W/A/S/D to Play Again", this.dimensions.width/2, this.dimensions.height/2 + 80);
   }
 
 
