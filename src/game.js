@@ -32,6 +32,7 @@ export default class PaperPlane {
     if (this.gameOver()) {
       alert(`You scored ${this.score}`);
       this.restart();
+      this.startScreen();
     }
 
     this.level.passedPipe(this.plane.bounds(), () => {
@@ -39,9 +40,10 @@ export default class PaperPlane {
       console.log(this.score);
     });
 
-    this.drawScore();
-
+    // this.drawScore();
+    
     if (this.running) {
+      this.drawScore();
       requestAnimationFrame(this.animate.bind(this));
     }
 
@@ -50,7 +52,7 @@ export default class PaperPlane {
   gameOver() {
     return (
       this.level.collidesWith(this.plane.bounds()) || this.plane.outOfBounds(this.height)
-    );
+      );
   }
 
   listenForEvents() {
@@ -100,7 +102,7 @@ export default class PaperPlane {
   }
 
   drawScore() {
-    const loc = { x: 10, y: 32 };
+    const loc = { x: 100, y: 32 };
     this.ctx.font = "bold 18pt 'Press Start 2P'";
     this.ctx.fillStyle = "white";
     this.ctx.fillText(`SCORE: ${this.score}`, loc.x, loc.y);
