@@ -1,6 +1,18 @@
-#hidden-plane, #hidden-bottom-pipe, #hidden-top-pipe, #hidden-scroll-bg {
+#hidden-plane, 
+#hidden-bottom-pipe, 
+#hidden-top-pipe, 
+#hidden-scroll-bg,
+#hidden-keyboard-w,
+#hidden-keyboard-a,
+#hidden-keyboard-s,
+#hidden-keyboard-d {
   display: none;
 }
+
+@font-face {
+  font-family: 'Press Start 2P', cursive;
+  src: https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap;
+};
 
 /* #start-screen {
 
@@ -47,7 +59,7 @@ h1 {
 
 .game-canvas{
   padding: 35px 0 35px; 
-  
+  font-family: 'Press Start 2P', cursive;
 }
 
 #plane-game {

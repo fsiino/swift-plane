@@ -56,7 +56,7 @@ export default class PaperPlane {
 
   listenForEvents() {
     window.addEventListener("keydown", (e) => {
-      let key_state = (event.type == "keydown") ? true : false;
+      let key_state = (event.type === "keydown") ? true : false;
       switch (e.keyCode) {
         case 65:
           key_state = "left";
@@ -83,12 +83,29 @@ export default class PaperPlane {
   }
 
   startScreen() {
+    // this.ctx.drawImage(document.getElementById("hidden-keyboard-a"), 50, 50, this.dimensions.width, this.dimensions.height);
+    // this.ctx.drawImage(document.getElementById("hidden-keyboard-s"), 50, 50, this.dimensions.width, this.dimensions.height);
+    // this.ctx.drawImage(document.getElementById("hidden-keyboard-d"), 50, 50, this.dimensions.width, this.dimensions.height);
     this.ctx.font = "bold 40pt 'Arial'";
     this.ctx.fillStyle = "#000000";
     this.ctx.textAlign = "center";
-    this.ctx.fillText("swiftPlane!", this.dimensions.width/2, this.dimensions.height/2);
-    this.ctx.font= "20pt 'Arial'";
-    this.ctx.fillText("Press W/A/S/D to Begin", this.dimensions.width/2, this.dimensions.height/2 + 40);
+    this.ctx.fillText("swiftPlane!", this.dimensions.width/2, this.dimensions.height/2 - 50);
+    this.ctx.font = "20pt 'Arial'";
+    this.ctx.fillText("Press [ENTER] to Begin", this.dimensions.width/2, this.dimensions.height/2 + 40 - 50);
+    this.ctx.fillText("Controls:", this.dimensions.width/2, this.dimensions.height/2 + 90 - 50);
+    this.ctx.font = "16pt 'Arial'";
+    this.ctx.fillText("[W]  Propel Upward  ⬆️", this.dimensions.width/2, this.dimensions.height/2 + 115 - 50);
+    this.ctx.fillText("[S]  Descend  ⬇️", this.dimensions.width/2, this.dimensions.height/2 + 145 - 50);
+    this.ctx.fillText("[A]  Backpedal  ⬅️", this.dimensions.width/2, this.dimensions.height/2 + 175 - 50);
+    this.ctx.fillText("[D]  Propel Forward  ➡️", this.dimensions.width/2, this.dimensions.height/2 + 205 - 50);
+    // this.ctx.drawImage(document.getElementById("hidden-keyboard-w"), 220, 220, 64, 64);
+
+
+    window.addEventListener("keydown", (e) => {
+      if (e.keyCode === 13) {
+        this.play();
+      }
+    });
   }
 
   endScreen() {
@@ -97,8 +114,7 @@ export default class PaperPlane {
     this.ctx.textAlign = "center";
     this.ctx.fillText("Game Over!", this.dimensions.width/2, this.dimensions.height/2 - 40);
     this.ctx.fillText(`You Scored ${this.score}`, this.dimensions.width/2, this.dimensions.height/2);
-    // this.ctx.font = "20 pt 'Arial'";
-    this.ctx.fillText("Press W/A/S/D to Play Again", this.dimensions.width/2, this.dimensions.height/2 + 80);
+    this.ctx.fillText("Press ENTER to Play Again", this.dimensions.width/2, this.dimensions.height/2 + 80);
   }
 
 
