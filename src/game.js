@@ -33,12 +33,11 @@ export default class PaperPlane {
       // alert(`You scored ${this.score}`);
       this.restart();
       this.endScreen();
-      // this.startScreen();
     }
 
     this.level.passedPipe(this.plane.bounds(), () => {
       this.score += 1;
-      console.log(this.score);
+      // console.log(this.score);
     });
 
     if (this.running) {
@@ -60,22 +59,22 @@ export default class PaperPlane {
       switch (e.keyCode) {
         case 65:
           key_state = "left";
-          this.move(key_state);
+          if (this.running) this.move(key_state);
           // console.log("left was pressed");
           break;
         case 68:
           key_state = "right";
-          this.move(key_state);
+          if (this.running) this.move(key_state);
           // console.log("right was pressed");
           break;
         case 87:
           key_state = "up";
-          this.move(key_state);
+          if (this.running) this.move(key_state);
           // console.log("up was pressed");
           break;
         case 83:
           key_state = "down";
-          this.move(key_state);
+          if (this.running) this.move(key_state);
           // console.log("down was pressed");
           break;
       }
@@ -83,9 +82,6 @@ export default class PaperPlane {
   }
 
   startScreen() {
-    // this.ctx.drawImage(document.getElementById("hidden-keyboard-a"), 50, 50, this.dimensions.width, this.dimensions.height);
-    // this.ctx.drawImage(document.getElementById("hidden-keyboard-s"), 50, 50, this.dimensions.width, this.dimensions.height);
-    // this.ctx.drawImage(document.getElementById("hidden-keyboard-d"), 50, 50, this.dimensions.width, this.dimensions.height);
     this.ctx.font = "bold 40pt 'Arial'";
     this.ctx.fillStyle = "#000000";
     this.ctx.textAlign = "center";
@@ -98,13 +94,11 @@ export default class PaperPlane {
     this.ctx.fillText("[S]  Descend  ⬇️", this.dimensions.width/2, this.dimensions.height/2 + 145 - 50);
     this.ctx.fillText("[A]  Backpedal  ⬅️", this.dimensions.width/2, this.dimensions.height/2 + 175 - 50);
     this.ctx.fillText("[D]  Propel Forward  ➡️", this.dimensions.width/2, this.dimensions.height/2 + 205 - 50);
-    // this.ctx.drawImage(document.getElementById("hidden-keyboard-w"), 220, 220, 64, 64);
-
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 13) {
         this.play();
-      }
+      } 
     });
   }
 
@@ -115,8 +109,12 @@ export default class PaperPlane {
     this.ctx.fillText("Game Over!", this.dimensions.width/2, this.dimensions.height/2 - 40);
     this.ctx.fillText(`You Scored ${this.score}`, this.dimensions.width/2, this.dimensions.height/2);
     this.ctx.fillText("Press ENTER to Play Again", this.dimensions.width/2, this.dimensions.height/2 + 80);
-  }
 
+    window.addEventListener("keydown", (e) => {
+      if (e.keyCode === 87) return false;
+    });
+   
+  }
 
   move(key_state) {
     if (!this.running) {
