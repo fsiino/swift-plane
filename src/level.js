@@ -4,7 +4,9 @@ const TUNE = {
   PIPE_WIDTH: 130,
   EDGE_BUFFER: 50,
   PIPE_SPACING: 370,
-  WARM_UP_SECONDS: 1
+  WARM_UP_SECONDS: 1, 
+
+  BG_SPEED: 5
 };
 
 export default class Level {
@@ -46,6 +48,7 @@ export default class Level {
 
   animate(ctx) {
     this.drawBackground(ctx);
+    // this.scrollBackground(ctx);
     this.movePipes();
     this.drawPipes(ctx);
   }

@@ -93,8 +93,8 @@ export default class PaperPlane {
     this.ctx.fillText("Controls:", this.dimensions.width/2, this.dimensions.height/2 + 90 - 50);
     this.ctx.font = "16pt 'Arial'";
     this.ctx.fillText("[W]  Propel Upward  ⬆️", this.dimensions.width/2, this.dimensions.height/2 + 115 - 50);
-    this.ctx.fillText("[S]  Descend  ⬇️", this.dimensions.width/2, this.dimensions.height/2 + 145 - 50);
-    this.ctx.fillText("[A]  Backpedal  ⬅️", this.dimensions.width/2, this.dimensions.height/2 + 175 - 50);
+    this.ctx.fillText("[A]  Backpedal  ⬅️", this.dimensions.width/2, this.dimensions.height/2 + 145 - 50);
+    this.ctx.fillText("[S]  Descend  ⬇️", this.dimensions.width/2, this.dimensions.height/2 + 175 - 50);
     this.ctx.fillText("[D]  Propel Forward  ➡️", this.dimensions.width/2, this.dimensions.height/2 + 205 - 50);
 
     window.addEventListener("keydown", (e) => {

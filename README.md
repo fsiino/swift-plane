@@ -1,51 +1,26 @@
-# Ascending Paper Plane
-[Live Link](http://fsiino.github.io/ascending-paper-plane)
+# Swift Plane
+[Live Link](http://fsiino.github.io/swift-plane)
 
 ## Background and Overview
 
-<i>Ascending Paper Plane (A.P.P.)</i> is a game inspired by Flappy Bird, Jump King, and Icy Tower. The goal of the game is to propel the gliding paper plane upward, steering it past all obstacles to achieve the highest possible score.
+<i>Swift Plane</i> is a game inspired by Flappy Bird with some additional challenges. The goal of the game is to propel the gliding paper plane, steering it past all obstacles to achieve the highest possible score. Wind resistance is against the paper plane, and the player must propel the plane forward, in addition to ascending upward past the peaks.
 
-## Functionality and MVP Features
-### A.P.P. will: 
-- [ ] Allow the player to propel a paper plane vertically with the A and D keys.
-- [ ] Have an infinitely continuous map to ascend through.
-- [ ] Randomly generate a series of new obstacles when a new game starts.
-- [ ] Keep track of the current game session's score as the player gains altitude.
-- [ ] Hear toggleable music and gameplay sounds such as collision and upward/sideways movement.
-
-## Architecture and Technologies
+## Technologies
 * Vanilla Javascript for game logic
 * HTML5 
 * Canvas.js
-* Web Audio API
 * Webpack 
 
-## Wireframe
-![Wireframe](https://github.com/fsiino/ascending-paper-plane/blob/master/wireframe_mock.png?raw=true)
+## Game Features
+- [ ] Player has full control of the paper plane both vertically and horizontally with the WASD keys.
+- [ ] An infinite scrolling map to fly through.
+- [ ] Randomly generates a new series of obstacles as the game progresses.
+- [ ] Keeps track of the current game session's score as the player gains altitude.
 
-## Implementation Timeline
-### Day 1: 
-- [ ] Read up and familiarize myself with documentation on Web Audio API, Canvas.js.
-- [ ] Revisit prior aA projects such as Asteroids and Flappy Bird.
-- [ ] Write up and deploy project proposal in the form of a readme.
+![Screenshot](https://www.frankiesiino.com/images/project-js.png)
 
-### Day 2: 
-- [ ] Set up webpack, node modules, and configure packages.
-- [ ] Render canvas element to HTML page.
-
-### Day 3: 
-- [ ] Implement sounds for things like collisions and character movement.
-- [ ] Add graphics for vital aspects of the game such as character, map background, and obstacles.
-
-### Day 4: 
-- [ ] Create game controls.
-- [ ] Apply character animations to keypress events.
-
-### Day 5: 
-- [ ] Stylize surrounding webpage.
-- [ ] Finalize testing and QA gameplay.
-
-## Bonus Features: 
+## Future Releases: 
+- [ ] An all-time-high leaderboard.
+- [ ] Hear toggleable music and gameplay sounds such as collision and upward/sideways movement.
 - [ ] Allow player to switch through different paper planes/skins.
 - [ ] Have different maps/themes to choose from.
-- [ ] An all-time-high leaderboard.
