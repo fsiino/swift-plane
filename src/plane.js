@@ -1,12 +1,12 @@
 
 const TUNE = {
-  // GRAVITY: 0.4,
   GRAVITY: 0.2,
-  // FLT_SPEED: 8,
-  FLT_SPEED: 5,
+  FLT_SPEED: 4,
   TERMINAL_VEL: 12,
   PLANE_WIDTH: 60,
-  PLANE_HEIGHT: 30
+  PLANE_HEIGHT: 30,
+
+  PLANE_PULL: 0.7
 };
 
 export default class Plane {
@@ -23,15 +23,15 @@ export default class Plane {
 
   fly(key_state) {
     if (key_state === "up") this.vel = -1 * TUNE.FLT_SPEED;
-    if (key_state === "right") this.xVel += 15;
-    if (key_state === "left") this.xVel -= 15;
+    if (key_state === "right") this.xVel += 17;
+    if (key_state === "left") this.xVel -= 17;
     if (key_state === "down") this.yVel += 10;
   }
-
 
   movePlane() {
     this.y += this.vel;
     this.vel += TUNE.GRAVITY;
+    
     if (Math.abs(this.vel) > TUNE.TERMINAL_VEL) {
       if (this.vel > 0) {
         this.vel = TUNE.TERMINAL_VEL;
@@ -39,16 +39,24 @@ export default class Plane {
         this.vel = TUNE.TERMINAL_VEL * -1;
       }
     }
+
+    this.x += this.xVel;
+    this.y += this.yVel;
+    this.xVel *= 0.9;
+    this.yVel *= 0.9;
+
+  }
+
+  windResistance() {
+    if (!this.fly()) {
+      this.x -= TUNE.PLANE_PULL;
+    }
   }
 
   animate(ctx) {
     this.movePlane();
     this.drawPlane(ctx);
-    
-    this.x += this.xVel;
-    this.y += this.yVel;
-    this.xVel *= 0.9;
-    this.yVel *= 0.9;
+    this.windResistance();
   }
 
   drawPlane(ctx) {

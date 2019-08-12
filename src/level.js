@@ -1,5 +1,4 @@
 const TUNE = {
-  // PIPE_SPEED: 2,
   PIPE_SPEED: 4,
   GAP_HEIGHT: 200,
   PIPE_WIDTH: 130,
@@ -25,7 +24,7 @@ export default class Level {
 
   randomPipe(x) {
     // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
-    const heightRange = (this.dimensions.height / 2) 
+    const heightRange = (this.dimensions.height / 2) ;
     const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
     const pipe = {
       topPipe: {
@@ -74,12 +73,11 @@ export default class Level {
       pipe.bottomPipe.right -= TUNE.PIPE_SPEED;
     });
 
-    //if a pipe has left the screen add a new one to the end
     if (this.pipes[0].topPipe.right <= 0) {
       this.pipes.shift();
       const newX = this.pipes[1].topPipe.left + TUNE.PIPE_SPACING;
       this.pipes.push(this.randomPipe(newX));
-    }
+    } // Adds a new pipe to the right of the screen if a pipe has moved off the left side of the screen.
   }
 
   drawPipes(ctx) {
@@ -105,15 +103,16 @@ export default class Level {
         pipe.bottomPipe.bottom - pipe.bottomPipe.top
       );
     });
+
+    // Increase game speed overtime
+    TUNE.PIPE_SPEED += 0.001;
   }
 
   eachPipe(callback) {
     this.pipes.forEach(callback.bind(this));
   }
-  //This method shall return true if the plane passed in is currently
-  //colliding with any pipe.
+  
   collidesWith(plane) {
-    //this function returns true if the the rectangles overlap
     const _overlap = (rect1, rect2) => {
       //check that they don't overlap in the x axis
       if (rect1.left > rect2.right || rect1.right < rect2.left) {
@@ -124,7 +123,7 @@ export default class Level {
         return false;
       }
       return true;
-    };
+    }; // returns true if the pipe overlaps with the plane
     let collision = false;
     this.eachPipe((pipe) => {
       if (
@@ -133,6 +132,7 @@ export default class Level {
         _overlap(pipe.bottomPipe, plane)
       ) { collision = true; }
     });
-    return collision;
+    return collision; //return true if plane collides with a pipe
   }
+
 }

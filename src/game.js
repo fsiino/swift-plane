@@ -3,6 +3,7 @@
 import Level from './level';
 import Plane from './plane';
 
+
 export default class PaperPlane {
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -79,6 +80,7 @@ export default class PaperPlane {
           break;
       }
     }, false);
+    
   }
 
   startScreen() {
@@ -124,8 +126,9 @@ export default class PaperPlane {
   }
 
   drawScore() {
-    const loc = { x: 100, y: 32 };
+    const loc = { x: 10, y: 32 };
     this.ctx.font = "bold 18pt 'Press Start 2P'";
+    this.ctx.textAlign = 'left';
     this.ctx.fillStyle = "white";
     this.ctx.fillText(`SCORE: ${this.score}`, loc.x, loc.y);
     this.ctx.strokeStyle = "black";
