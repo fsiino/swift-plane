@@ -1,3 +1,5 @@
+import PaperPlane from './game';
+
 const TUNE = {
   PIPE_SPEED: 4,
   GAP_HEIGHT: 200,
@@ -6,7 +8,8 @@ const TUNE = {
   PIPE_SPACING: 370,
   WARM_UP_SECONDS: 1, 
 
-  BG_SPEED: 5
+  BG_SPEED_X: 5,
+  BG_SPEED_Y: 0
 };
 
 export default class Level {
@@ -48,13 +51,12 @@ export default class Level {
 
   animate(ctx) {
     this.drawBackground(ctx);
-    // this.scrollBackground(ctx);
     this.movePipes();
     this.drawPipes(ctx);
   }
 
   drawBackground(ctx) {
-    ctx.drawImage(document.getElementById("hidden-scroll-bg"), 0, 0, this.dimensions.width, this.dimensions.height)
+    ctx.drawImage(document.getElementById("hidden-scroll-bg"), 0, 0, this.dimensions.width, this.dimensions.height);
   }
 
   passedPipe(plane, callback) {

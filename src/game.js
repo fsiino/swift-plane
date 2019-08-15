@@ -15,12 +15,13 @@ export default class PaperPlane {
 
   play() {
     this.running = true;
+    this.score = 0;
     this.animate();
   }
 
   restart() {
     this.running = false;
-    this.score = 0;
+    // this.score = 0; // moved this to play()
     this.plane = new Plane(this.dimensions);
     this.level = new Level(this.dimensions); // pass in canvas dimensions.
     this.animate();
@@ -99,7 +100,7 @@ export default class PaperPlane {
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 13) {
-        this.play();
+        this.play(); // resets score to 0 when new game starts vs. gameover()
       } 
     });
   }

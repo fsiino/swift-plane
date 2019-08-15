@@ -6,7 +6,7 @@
 <i>Swift Plane</i> is a game inspired by Flappy Bird with some additional challenges. The goal of the game is to propel the gliding paper plane, steering it past all obstacles to achieve the highest possible score. Wind resistance is against the paper plane, and the player must propel the plane forward, in addition to ascending upward past the peaks.
 
 ## Technologies
-* Vanilla Javascript for game logic
+* Vanilla Javascript
 * HTML5 
 * Canvas.js
 * Webpack 

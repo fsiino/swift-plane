@@ -9,4 +9,5 @@ new PaperPlane(canvas);
 //TODO: Make pipes move faster overtime (PIPE_SPEED)
 //TODO: Make background scroll infinitely
 //TODO: decrease variance of pipe sizes
+//TODO: Fix collisions with triangular pipes
 //TODO: add sounds?
