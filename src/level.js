@@ -29,8 +29,9 @@ export default class Level {
 
   randomPipe(x) {
     // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
-    const heightRange = (this.dimensions.height / 2) ;
-    const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
+    const heightRange = (this.dimensions.height / 4) ;
+    // const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
+    const gapTop = (heightRange) + TUNE.EDGE_BUFFER;
     const pipe = {
       topPipe: {
         left: x,
@@ -72,10 +73,15 @@ export default class Level {
 
   movePipes() {
     this.eachPipe(function (pipe) {
-      pipe.topPipe.left -= TUNE.PIPE_SPEED;
-      pipe.topPipe.right -= TUNE.PIPE_SPEED;
-      pipe.bottomPipe.left -= TUNE.PIPE_SPEED;
-      pipe.bottomPipe.right -= TUNE.PIPE_SPEED;
+      let pipeSpeed = TUNE.PIPE_SPEED;
+      pipe.topPipe.left -= pipeSpeed;
+      pipe.topPipe.right -= pipeSpeed;
+      pipe.bottomPipe.left -= pipeSpeed;
+      pipe.bottomPipe.right -= pipeSpeed;
+
+      // Increase game speed overtime
+      pipeSpeed += 0.001;
+
     });
 
     if (this.pipes[0].topPipe.right <= 0) {
@@ -109,8 +115,8 @@ export default class Level {
       );
     });
 
-    // Increase game speed overtime
-    TUNE.PIPE_SPEED += 0.001;
+    // // Increase game speed overtime
+    // pipeSpeed += 0.001;
   }
 
   eachPipe(callback) {
