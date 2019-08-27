@@ -1,7 +1,9 @@
 # Swift Plane
 [Live Link](http://fsiino.github.io/swift-plane)
 
-![Screenshot](https://www.frankiesiino.com/images/project-js.png)
+<p align="center">
+<img src="https://www.frankiesiino.com/images/project-js.png"/>
+</p>
 
 ## Background and Overview
 
@@ -19,7 +21,9 @@
 - [ ] Randomly generates a new series of obstacles as the game progresses.
 - [ ] Keeps track of the current game session's score as the player gains altitude.
 
-![Gameplay Demo](https://www.frankiesiino.com/images/project-js.gif)
+<p align="center">
+  <img src="https://www.frankiesiino.com/images/project-js.gif"/>
+</p>
 
 ## Future Releases: 
 - [ ] An all-time-high leaderboard.
