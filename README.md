@@ -2,7 +2,7 @@
 [Live Link](http://fsiino.github.io/swift-plane)
 
 <p align="center">
-<img src="https://www.frankiesiino.com/images/project-js.png"/>
+<img src="https://github.com/fsiino/swift-plane/blob/master/assets/project-js.png?raw=true"/>
 </p>
 
 ## Background and Overview
@@ -22,7 +22,7 @@
 - [ ] Keeps track of the current game session's score as the player gains altitude.
 
 <p align="center">
-  <img src="https://www.frankiesiino.com/images/project-js.gif"/>
+  <img src="https://github.com/fsiino/swift-plane/blob/master/assets/project-js.gif?raw=true"/>
 </p>
 
 ## Future Releases: 
