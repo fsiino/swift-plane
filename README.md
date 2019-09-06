@@ -2,7 +2,7 @@
 [Live Link](http://fsiino.github.io/swift-plane)
 
 <p align="center">
-<img src="https://github.com/fsiino/swift-plane/blob/master/assets/project-js.png?raw=true"/>
+<img src="https://github.com/fsiino/swift-plane/blob/master/assets/project-js-start.png?raw=true"/>
 </p>
 
 ## Background and Overview
