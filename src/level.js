@@ -28,10 +28,10 @@ export default class Level {
   }
 
   randomPipe(x) {
-    // const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
-    const heightRange = (this.dimensions.height / 4) ;
-    // const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
-    const gapTop = (heightRange) + TUNE.EDGE_BUFFER;
+    const heightRange = this.dimensions.height - (2 * TUNE.EDGE_BUFFER) - TUNE.GAP_HEIGHT;
+    // const heightRange = (this.dimensions.height / 4) ;
+    const gapTop = (Math.random() * heightRange) + TUNE.EDGE_BUFFER;
+    // const gapTop = (heightRange) + TUNE.EDGE_BUFFER;
     const pipe = {
       topPipe: {
         left: x,
