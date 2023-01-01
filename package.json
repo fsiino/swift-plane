@@ -4,10 +4,10 @@
   "description": "[Live Link](http://fsiino.github.io/ascending-paper-plane)",
   "main": "webpack.config.js",
   "dependencies": {
-    "webpack": "^4.38.0"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
